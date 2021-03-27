@@ -56,3 +56,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Twilio client
 gem 'twilio-ruby'
+# Mailgun client
+gem 'mailgun-ruby', '~> 1.2.3'
