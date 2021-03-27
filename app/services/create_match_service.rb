@@ -6,7 +6,13 @@ class CreateMatchService
   end
 
   def call
-    ppl = Person.where.not(id: @id).includes(:interests)
+    ppl = Person.where.not(id: 1)
+                .includes(:interests, :meetings)
+                .select { |p| (p.meetings
+                                .to_a
+                                .sort_by(&:created_at)
+                                &.last
+                                &.created_at || 2.days.ago) < 1.day.ago }
     arr = []
     ppl.find_each do |person|
       jac_sim = jaccard_similarity(@my_interests, person.interests.map(&:title))
