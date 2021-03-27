@@ -6,7 +6,7 @@ class CreateMatchService
   end
 
   def call
-    ppl = Person.where.not(id: 1)
+    ppl = Person.where.not(id: @id)
                 .includes(:interests, :meetings)
                 .select { |p| (p.meetings
                                 .to_a
@@ -14,18 +14,21 @@ class CreateMatchService
                                 &.last
                                 &.created_at || 2.days.ago) < 1.day.ago }
     arr = []
-    ppl.find_each do |person|
+    ppl.each do |person|
       jac_sim = jaccard_similarity(@my_interests, person.interests.map(&:title))
 
       arr.push(
         {
-          id => person.id,
-          val => jac_sim
+          id: person.id,
+          val: jac_sim
         }
       )
     end
 
-    arr.sort_by { |k| k[jac_sim] }
+    arr.sort_by { |k| k[:val] }
+       .reject { |k| k[:val] == 0.0 }
+       .reverse
+       .map { |k| Person.find(k[:id]) }
   end
 
   def jaccard_similarity(a, b)
