@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
-  database: Hacknarock_production
-  username: Hacknarock
+  host: ec2-52-209-134-160.eu-west-1.compute.amazonaws.com
+  database: d76v4hk83ontu2
+  username: ctououfqvuvfzs
+  port: 5432
   password: <%= ENV['HACKNAROCK_DATABASE_PASSWORD'] %>
