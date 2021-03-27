@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  age: 
+  gender: false
+  description: MyText
+  day: 
+  hour: 
+  group_size: 
+
+two:
+  name: MyString
+  age: 
+  gender: false
+  description: MyText
+  day: 
+  hour: 
+  group_size: 

@@ -23,7 +23,11 @@ default: &default
 
 development:
   <<: *default
-  database: Hacknarock_development
+  host: 127.0.0.1
+  database: postgres
+  username: postgres
+  port: 5432
+  password: docker
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
