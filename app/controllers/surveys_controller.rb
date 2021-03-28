@@ -7,4 +7,11 @@ class SurveysController < ApplicationController
 
     head 200
   end
+
+  def show
+    hashids = Hashids.new(ENV['HASHIDS_SALT'], 12, ('a'..'z').to_a.join)
+    id = hashids.decode(params[:id])
+
+    Person.find(id).destroy
+  end
 end

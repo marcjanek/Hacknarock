@@ -21,7 +21,8 @@ namespace :matches do
 
         mail_service = PrepareMailService.new(url: meeting_service.url,
                                               people: service.results.reject { |m| m == matched_person },
-                                              date: service.date)
+                                              date: service.date,
+                                              id: matched_person.id)
 
         SendMailService.new(
           receiver: matched_person.email,
