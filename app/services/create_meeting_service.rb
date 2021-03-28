@@ -1,5 +1,5 @@
 class CreateMeetingService
-  attr_accessor :uuid
+  attr_accessor :uuid, :date, :meeting
 
   def initialize(date)
     @date = date
@@ -7,7 +7,7 @@ class CreateMeetingService
   end
 
   def call
-    Meeting.create(
+    @meeting = Meeting.create(
       date: @date,
       uuid: @uuid
     )
